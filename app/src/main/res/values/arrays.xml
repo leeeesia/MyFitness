@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="exercise">
+        <item>Slopes|x25|slopes.jpg</item> <!--0-->
+        <item>LegSplit|25|leg_split.jpg</item> <!--1-->
+        <item>Slingshot|40|slingshot.jpg</item> <!--2-->
+        <item>Boat|30|boat.jpg</item> <!--3-->
+        <item>Cobra|15|cobra.jpg</item> <!--4-->
+    </string-array>
+
+    <string-array name="day_exercises">
+        <item>4,1,3,2,3</item>
+        <item>0,4,2,1,0</item>
+        <item>2,4,1,0,3</item>
+    </string-array>
+</resources>
