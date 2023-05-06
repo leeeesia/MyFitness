@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -18,6 +19,7 @@ import ru.myfitness.utils.MainViewModel
 
 class PlanFragment : Fragment(), DaysAdapter.Listener {
     private lateinit var binding: FragmentPlanBinding
+    private var actionBar: ActionBar? = null
     private val model: MainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -30,13 +32,15 @@ class PlanFragment : Fragment(), DaysAdapter.Listener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        actionBar = (activity as AppCompatActivity).supportActionBar
+        actionBar?.title = "План тренировки"
         initRcView()
     }
 
     private fun fillDaysArray(): ArrayList<DayModel> {
         val tempArray = ArrayList<DayModel>()
         resources.getStringArray(R.array.day_exercises).forEach {
-            tempArray.add(DayModel(it, false))
+            tempArray.add(DayModel(it, 0, false))
         }
         return tempArray
     }
@@ -53,7 +57,7 @@ class PlanFragment : Fragment(), DaysAdapter.Listener {
             val exerciseList = resources.getStringArray(R.array.exercise)
             val exercise = exerciseList[it.toInt()]
             val exerciseArray = exercise.split("|")
-            tempList.add(ExerciseModel(exerciseArray[0],exerciseArray[1],exerciseArray[2]))
+            tempList.add(ExerciseModel(exerciseArray[0],exerciseArray[1],false,exerciseArray[2]))
         }
         model.mutableListExercise.value = tempList
     }
@@ -66,6 +70,7 @@ class PlanFragment : Fragment(), DaysAdapter.Listener {
 
     override fun onClick(day: DayModel) {
         fillExerciseList(day)
+        model.currentDay = day.dayNumber
         FragmentManager.setFragment(ExercisesListFragment.newInstance(),
             activity as AppCompatActivity)
     }

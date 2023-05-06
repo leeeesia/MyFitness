@@ -6,16 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import ru.myfitness.R
-import ru.myfitness.adapters.DayModel
-import ru.myfitness.adapters.ExerciseAdapter
+import pl.droidsonroids.gif.GifDrawable
 import ru.myfitness.adapters.ExerciseModel
 import ru.myfitness.databinding.ExerciseBinding
-import ru.myfitness.databinding.FragmentExercisesListBinding
 import ru.myfitness.utils.FragmentManager
 import ru.myfitness.utils.MainViewModel
 import ru.myfitness.utils.TimeUtils
@@ -25,6 +22,7 @@ class ExercisesFragment : Fragment() {
     private var timer: CountDownTimer? = null
     private var exerciseCounter = 0
     private var exList: ArrayList<ExerciseModel>? = null
+    private var actionBar: ActionBar? = null
     private val model: MainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -37,11 +35,13 @@ class ExercisesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        actionBar = (activity as AppCompatActivity).supportActionBar
+        exerciseCounter = model.getExerciseCount()
         model.mutableListExercise.observe(viewLifecycleOwner) {
             exList = it
             nextExercise()
         }
-        binding.bNext.setOnClickListener(){
+        binding.bNext.setOnClickListener() {
             nextExercise()
         }
 
@@ -52,26 +52,42 @@ class ExercisesFragment : Fragment() {
             val exercise = exList?.get(exerciseCounter++) ?: return
             showExercise(exercise)
             setExerciseType(exercise)
+            showNextExercise()
         } else {
-            Toast.makeText(activity,"Done", Toast.LENGTH_LONG).show()
+            FragmentManager.setFragment(DayFinishFragment.newInstance(),
+                activity as AppCompatActivity)
+        }
+    }
+
+    private fun showNextExercise() = with(binding) {
+        if (exerciseCounter < exList?.size!!) {
+            val exercise = exList?.get(exerciseCounter) ?: return
+            tvNextName.text = exercise.name
+            imMain.setImageDrawable(GifDrawable(root.context.assets, exercise.image))
+        } else {
+            Toast.makeText(activity, "Done", Toast.LENGTH_LONG).show()
+            tvNextName.text = "Готово"
         }
     }
 
     private fun showExercise(exercise: ExerciseModel) = with(binding) {
         tvName.text = exercise.name
+        val title = "$exerciseCounter/${exList?.size}"
+        actionBar?.title = title
     }
 
     private fun setExerciseType(exercise: ExerciseModel) {
-        if (exercise.time.startsWith("x")){
+        if (exercise.time.startsWith("x")) {
             binding.tvTime.text = exercise.time
-        }else{
+        } else {
             startTimer(exercise)
         }
     }
+
     private fun startTimer(exercise: ExerciseModel) = with(binding) {
-        pbMain.max = exercise.time.toInt()*1000
+        pbMain.max = exercise.time.toInt() * 1000
         timer?.cancel()
-        timer = object : CountDownTimer(exercise.time.toLong()*1000, 1) {
+        timer = object : CountDownTimer(exercise.time.toLong() * 1000, 1) {
             override fun onTick(restTime: Long) {
                 tvTime.text = TimeUtils.getTime(restTime)
                 pbMain.progress = restTime.toInt()
@@ -87,6 +103,7 @@ class ExercisesFragment : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
+        model.savePref(model.currentDay.toString(), exerciseCounter - 1)
         timer?.cancel()
     }
 

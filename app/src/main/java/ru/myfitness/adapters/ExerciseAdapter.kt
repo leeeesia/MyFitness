@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import pl.droidsonroids.gif.GifDrawable
 import ru.myfitness.R
 import ru.myfitness.databinding.DaysListItemBinding
 import ru.myfitness.databinding.ExerciseListItemBinding
@@ -18,6 +19,8 @@ class ExerciseAdapter() :
         fun setData(exercise: ExerciseModel) = with(binding) {
             exName.text = exercise.name
             exTime.text = exercise.time
+            exCheckBox.isChecked = exercise.isDone
+            exImage.setImageDrawable(GifDrawable(root.context.assets, exercise.image))
         }
     }
 

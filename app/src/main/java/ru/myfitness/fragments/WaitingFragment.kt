@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -22,6 +23,7 @@ const val COUNT_DOWN_TIME = 11000L
 
 class WaitingFragment : Fragment() {
     private lateinit var binding: WaitingFragmentBinding
+    private var actionBar: ActionBar? = null
     private lateinit var timer: CountDownTimer
 
     override fun onCreateView(
@@ -29,6 +31,8 @@ class WaitingFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = WaitingFragmentBinding.inflate(inflater, container, false)
+        actionBar = (activity as AppCompatActivity).supportActionBar
+        actionBar?.title = "Приготовьтесь"
         return binding.root
     }
 

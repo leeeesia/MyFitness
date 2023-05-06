@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="exercise">
-        <item>Slopes|x25|slopes.jpg</item> <!--0-->
-        <item>LegSplit|25|leg_split.jpg</item> <!--1-->
-        <item>Slingshot|40|slingshot.jpg</item> <!--2-->
-        <item>Boat|30|boat.jpg</item> <!--3-->
-        <item>Cobra|15|cobra.jpg</item> <!--4-->
+        <item>Приседания|x25|squat.gif</item> <!--0-->
+        <item>Велосипед|25|squat.gif</item> <!--1-->
+        <item>Пресс|40|squat.gif</item> <!--2-->
+        <item>Отжимания|30|squat.gif</item> <!--3-->
+        <item>Планка|15|squat.gif</item> <!--4-->
     </string-array>
 
     <string-array name="day_exercises">

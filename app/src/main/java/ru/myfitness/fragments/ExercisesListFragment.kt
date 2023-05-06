@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -17,6 +18,7 @@ import ru.myfitness.utils.MainViewModel
 class ExercisesListFragment : Fragment() {
     private lateinit var binding: FragmentExercisesListBinding
     private lateinit var adapter: ExerciseAdapter
+    private var actionBar: ActionBar? = null
     private val model: MainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -38,8 +40,13 @@ class ExercisesListFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        actionBar = (activity as AppCompatActivity).supportActionBar
+        actionBar?.title = "Список упражнений"
         init()
         model.mutableListExercise.observe(viewLifecycleOwner){
+            for (i in 0 until model.getExerciseCount()){
+                it[i] =it[i].copy(isDone = true)
+            }
             adapter.submitList(it)
         }
 
