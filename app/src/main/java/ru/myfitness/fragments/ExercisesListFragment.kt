@@ -36,7 +36,6 @@ class ExercisesListFragment : Fragment() {
         goExercise.setOnClickListener(){
             FragmentManager.setFragment(WaitingFragment.newInstance(),activity as AppCompatActivity)
         }
-
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

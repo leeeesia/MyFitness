@@ -60,7 +60,6 @@ class WaitingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.pbStart.max = COUNT_DOWN_TIME.toInt()
         startTimer()
-
     }
 
 
