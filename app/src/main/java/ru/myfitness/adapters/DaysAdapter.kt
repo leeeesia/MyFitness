@@ -14,14 +14,15 @@ class DaysAdapter(var listener: Listener) :
     class DayHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = DaysListItemBinding.bind(view)
         fun setData(day: DayModel, listener: Listener) = with(binding) {
-            val nameValue = root.context.getString(R.string.day) + "${adapterPosition + 1}"
+            val nameValue = root.context.getString(R.string.day) + " " + "${adapterPosition + 1}"
             name.text = nameValue
             val exCounter =
-                day.exercises.split(",").size.toString() + " " + root.context.getString(R.string.exercise)
+                 "Количество упражнений: " +  day.exercises.split(",").size.toString()
             counter.text = exCounter
+
             checkBox.isChecked = day.isDone
             itemView.setOnClickListener {
-                listener.onClick(day.copy(dayNumber = adapterPosition + 1))
+                listener.onClick(day.copy(dayNumber = adapterPosition))
             }
         }
     }

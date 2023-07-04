@@ -2,6 +2,7 @@ package ru.myfitness.fragments
 
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,18 +67,20 @@ class ExercisesFragment : Fragment() {
     private fun showNextExercise() = with(binding) {
         if (exerciseCounter < exList?.size!!) {
             val exercise = exList?.get(exerciseCounter) ?: return
-            tvNextName.text = exercise.name
-            imMain.setImageDrawable(GifDrawable(root.context.assets, exercise.image))
+            imNext.setImageDrawable(GifDrawable(root.context.assets, exercise.image))
+            tvNextName.text = "Далее " + exercise.name
         } else {
-            Toast.makeText(activity, "Done", Toast.LENGTH_LONG).show()
-            tvNextName.text = "Готово"
+            Toast.makeText(activity, "Готово", Toast.LENGTH_LONG).show()
+            tvNextName.text = "Это последнее упражнение"
         }
     }
 
     private fun showExercise(exercise: ExerciseModel) = with(binding) {
         tvName.text = exercise.name
+        imMain.setImageDrawable(GifDrawable(root.context.assets, exercise.image))
         val title = "$exerciseCounter/${exList?.size}"
         actionBar?.title = title
+        setExerciseType(exercise)
     }
 
     private fun setExerciseType(exercise: ExerciseModel) {

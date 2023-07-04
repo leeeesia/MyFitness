@@ -5,18 +5,11 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import ru.myfitness.adapters.DayModel
-import ru.myfitness.adapters.ExerciseAdapter
-import ru.myfitness.databinding.FragmentExercisesListBinding
 import ru.myfitness.databinding.WaitingFragmentBinding
 import ru.myfitness.utils.FragmentManager
-import ru.myfitness.utils.MainViewModel
 import ru.myfitness.utils.TimeUtils
 
 const val COUNT_DOWN_TIME = 11000L

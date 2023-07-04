@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="exercise">
-        <item>Приседания|x25|squat.gif</item> <!--0-->
-        <item>Велосипед|25|squat.gif</item> <!--1-->
-        <item>Пресс|40|squat.gif</item> <!--2-->
-        <item>Отжимания|30|squat.gif</item> <!--3-->
-        <item>Планка|15|squat.gif</item> <!--4-->
+        <item>Отдых|15|rest.gif|0-0-0-0-0-0|100</item> <!--0-->
+        <item>Скручивания|25|twisting.gif|0-0-14-6-6-2|2</item> <!--1-->
+        <item>Пресс|30|squat.gif|0-2-14-2-0-2|3</item> <!--2-->
+        <item>Отжимания|30|push_ups.gif|14-10-3-0-0-6|4</item> <!--3-->
+        <item>Планка|15|plank.gif|4-2-6-2-4-5|3</item> <!--4-->
+        <item>Приседания|25|squat.gif|0-0-1-7-13-0|2</item> <!--5-->
+        <item>Выпады|20|lunges.gif|0-0-3-7-15-0|2</item> <!--6-->
+        <item>Планка с подъемом|10|plank_lift.gif|14-8-3-0-0-5|3</item> <!--7-->
+        <item>Подъем ног по диагонали|30|rises_leg.gif|0-0-2-7-14-0|2</item> <!--8-->
+        <item>Бег на месте|40|run.gif|0-0-2-3-10-0|2</item> <!--9-->
+        <item>Боковая планка|15|side_p0-0-1-7-13-0lank.gif|3-2-7-2-8-3|3</item> <!--10-->
+        <item>Альпинист|30|alpinist.gif|2-0-1-7-14-2|2</item> <!--11-->
+        <item>Выпады в прыжке|15|jump_lunges.gif|0-0-3-7-15-0|1</item> <!--12-->
+        <item>Подъем ног|30|leg_lift.gif|0-0-1-7-15-0|3</item> <!--13-->
     </string-array>
 
     <string-array name="day_exercises">
-        <item>4,1,3,2,3</item>
-        <item>0,4,2,1,0</item>
-        <item>2,4,1,0,3</item>
+        <item>4,0,12,0,13,0,2,0,3,4,0,12,0,13,0,2,0,3</item>
+        <item>5,0,4,0,2,0,1,0,10</item>
+        <item>12,0,4,0,1,0,11,0,3</item>
+    </string-array>
+    <string-array name="exercises">
+        <item>0,1,2,3,4,5,6,7,8,9,10,11,12,13</item>
     </string-array>
 </resources>

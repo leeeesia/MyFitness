@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.myfitness.adapters.DayModel
 import ru.myfitness.adapters.ExerciseAdapter
 import ru.myfitness.databinding.FragmentExercisesListBinding
 import ru.myfitness.utils.FragmentManager

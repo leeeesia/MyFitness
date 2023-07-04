@@ -14,11 +14,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         model.pref = getSharedPreferences("main", MODE_PRIVATE)
-        FragmentManager.setFragment(MainFragment.newInstance(), this)
+        FragmentManager.setFragment(MainFragment.newInstance(arrayOf()), this)
     }
 
     override fun onBackPressed() {
         if (FragmentManager.currentFragment is MainFragment) super.onBackPressed()
-        else FragmentManager.setFragment(MainFragment.newInstance(), this)
+        else FragmentManager.setFragment(MainFragment.newInstance(arrayOf()), this)
     }
 }

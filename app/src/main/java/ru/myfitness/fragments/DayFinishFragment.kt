@@ -29,7 +29,7 @@ class DayFinishFragment : Fragment() {
         actionBar = (activity as AppCompatActivity).supportActionBar
         actionBar?.title = "Готово"
         binding.bDone.setOnClickListener(){
-            FragmentManager.setFragment(MainFragment.newInstance(), activity as AppCompatActivity)
+            FragmentManager.setFragment(MainFragment.newInstance(arrayOf()), activity as AppCompatActivity)
         }
 
     }
